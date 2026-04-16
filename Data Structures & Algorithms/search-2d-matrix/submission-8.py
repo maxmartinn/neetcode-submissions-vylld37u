@@ -1,0 +1,33 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        ROWS = len(matrix)
+        COLS = len(matrix[0])
+
+
+        # first find the right row that the value is on
+
+        l = 0
+        r = ROWS - 1
+        row = (l + r) // 2
+        while l <= r:
+            row = (l + r) // 2
+            if matrix[row][0] <= target <= matrix[row][COLS - 1]:
+                break
+            elif matrix[row][0] > target:
+                r = row - 1
+            else:
+                l = row + 1
+
+        l = 0
+        r = COLS - 1
+        m = (l + r) // 2
+        while l <= r:
+            m = (l + r) // 2
+
+            if matrix[row][m] == target :
+                return True
+            elif matrix[row][m] > target:
+                r = m - 1
+            else:
+                l = m + 1
+        return False 
